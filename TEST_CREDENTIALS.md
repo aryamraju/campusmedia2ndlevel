@@ -1,8 +1,24 @@
 # Test Credentials for CampusMedia App
 
-## Pre-seeded Test Accounts
+## Backend Test Accounts (MySQL Database)
 
-The app now comes with pre-seeded test accounts that you can use to login immediately:
+### Admin Account
+- **Email:** admin@gmail.com
+- **Password:** admin@123
+- **Secret Key:** ADMIN2026
+- **Role:** Admin
+
+### Principal Account
+- **Email:** principal@gmail.com
+- **Password:** principal@123
+- **Role:** Principal
+
+### Staff Account
+- **Email:** staff@gmail.com
+- **Password:** staff@123
+- **Role:** Staff
+- **Name:** Test Staff
+- **Register Number:** STAFF001
 
 ### Student Account
 - **Email:** student@test.com
@@ -10,30 +26,44 @@ The app now comes with pre-seeded test accounts that you can use to login immedi
 - **Role:** Student
 - **Name:** John Student
 
-### Staff Account
-- **Email:** staff@test.com
-- **Password:** 123456
-- **Role:** Staff
-- **Name:** Jane Staff
+## Features Implemented
 
-### Principal Account (Hardcoded)
-- **Email:** principal@gmail.com
-- **Password:** principal@123
-- **Role:** Principal
+### Authentication System
+- Email/password/role-based login
+- Password hashing using Django's make_password
+- Session management with SharedPreferences
 
-## What Was Fixed
+### Student Features
+- First-time login details page (class, stream, year, department)
+- Details saved to MySQL database via API
+- View announcements from staff in Campus Feed
+- Pull-to-refresh to reload announcements
 
-1. **Persistent Storage**: Added `shared_preferences` package to store user data permanently
-2. **Pre-seeded Users**: Automatically creates test users on first launch
-3. **Async Operations**: Updated all UserService methods to work asynchronously
-4. **Login Fix**: The login page now properly validates against stored users
+### Staff Features
+- First-time login details page (qualification, subject expertise, assigned classes, experience)
+- Details saved to MySQL database via API
+- Create announcements visible to all students
+- Staff portal with announcement management
+- Manage classes stored in database
+
+### Announcement System
+- Staff/Principal/Admin can create announcements
+- Students can view active announcements
+- Stored in MySQL database
+- Real-time updates via API
+
+### Database Integration
+- Staff details (qualification, subject, classes, experience) stored in MySQL
+- Student details (class, stream, year, department) stored in MySQL
+- Persistent storage across sessions
+- Hybrid storage: Database + SharedPreferences for offline access
 
 ## How to Use
 
-1. Launch the app
-2. Navigate to the Login page
-3. Enter any of the test credentials above
-4. Select the matching role from the dropdown
-5. Click "Sign In"
+1. Make sure MySQL is running: `net start MySQL80`
+2. Start Django backend: `cd campusmedia_backend && python manage.py runserver`
+3. Launch Flutter app
+4. Login with any credentials above
+5. First-time staff/student users will see details collection page
 
-You can also register new users which will be saved permanently!
+You can also register new users which will be saved to the MySQL database!
