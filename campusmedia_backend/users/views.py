@@ -224,6 +224,8 @@ def update_staff_details(request):
         if experience_years is not None:
             user.experience_years = int(experience_years)
         
+        # Mark profile as completed
+        user.profile_completed = True
         user.save()
         
         return Response({
@@ -296,6 +298,8 @@ def update_student_details(request):
         if department:
             user.department = department
         
+        # Mark profile as completed
+        user.profile_completed = True
         user.save()
         
         return Response({

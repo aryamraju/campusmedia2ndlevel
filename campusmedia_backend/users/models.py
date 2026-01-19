@@ -36,6 +36,7 @@ class User(models.Model):
     
     # Additional fields
     is_active = models.BooleanField(default=True)
+    profile_completed = models.BooleanField(default=False, help_text="Has user completed their profile details")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
